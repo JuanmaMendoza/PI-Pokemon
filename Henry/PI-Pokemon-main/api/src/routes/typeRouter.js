@@ -1,8 +1,10 @@
 const {Router} = require('express');
-const {createPokemonHandler} = require('../handlers/typeHandler');
+const {getTypeDataHandler, saveTypeDataHandler} = require('../handlers/typeHandler');
 
 const typeRouter = Router();
 
-typeRouter.post('/' , createPokemonHandler);
+typeRouter.post('/' , getTypeDataHandler);
+typeRouter.post('/' , saveTypeDataHandler);
+
 
 module.exports = typeRouter;
