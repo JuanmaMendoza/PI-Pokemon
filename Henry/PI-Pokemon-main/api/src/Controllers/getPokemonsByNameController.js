@@ -26,4 +26,4 @@ const getPokemonsByNameController = async (name) => {
     }
 };
 
-module.exports = getPokemonsByNameController;
+module.exports = {getPokemonsByNameController};

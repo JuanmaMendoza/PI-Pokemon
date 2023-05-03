@@ -12,4 +12,4 @@ const saveTypeDataController = async (allTypes) => {
 };
 
 
-module.exports = saveTypeDataController;
+module.exports = {saveTypeDataController};

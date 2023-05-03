@@ -41,4 +41,4 @@ const getPokemonDataController = async () => {
     };
 };
 
-module.exports = { getPokemonDataController };
+module.exports = {getPokemonDataController};

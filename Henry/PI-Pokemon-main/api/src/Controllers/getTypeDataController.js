@@ -1,5 +1,8 @@
 const axios = require('axios')
 
+
+
+
 const getTypeDataController = async () => {
     try {
         const allTypes = (await axios('https://pokeapi.co/api/v2/type'))
@@ -13,4 +16,4 @@ const getTypeDataController = async () => {
     };
 };
 
-module.exports =  getTypeDataController;
+module.exports =  {getTypeDataController};

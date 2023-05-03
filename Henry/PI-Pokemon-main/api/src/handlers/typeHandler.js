@@ -1,33 +1,23 @@
-const axios = require('axios')
-const { Type } = require('../db');
+const { Type } = require("../db");
+const {getTypeDataController} = require("../Controllers/getTypeDataController");
+const {saveTypeDataController} = require("../Controllers/saveTypeDataController");
 
 
-
-const getTypeDataHandler = async () => {
+const getTypeDataHandler = async (req, res) => {
     try {
-        const allTypes = (await axios('https://pokeapi.co/api/v2/type'))
-        .data.results.map((type) => {
-            return { name: type.name };
-        });
-        return allTypes;
+        // lo busco en db
+        const dbTypes = await Type.findAll();
+        if (Object.keys(dbTypes).length) {
+            return res.status(200).json(dbTypes);
+        }
+        //si no esta en db, lo busco en la api y lo guardo en la db
+        const allTypes = await getTypeDataController();
+        const savedTypes = await saveTypeDataController(allTypes);
+        return res.status(200).json(savedTypes);
     }
-    catch(error) {
-        throw Error(error.message)
-    };
-};
-
-const saveTypeDataHandler = async (allTypes) => {
-    try {
-        const savedTypes = Type.bulkCreate(allTypes);
-        return savedTypes;
+    catch (error) {
+        res.status(404).send(error.message);
     }
-    catch(error) {
-        throw Error(error.message);
-    };
-};
+}
 
-
-module.exports = {
-    getTypeDataHandler,
-    saveTypeDataHandler
-};
+module.exports = { getTypeDataHandler };

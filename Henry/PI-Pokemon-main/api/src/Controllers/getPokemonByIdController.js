@@ -15,4 +15,4 @@ const getPokemonByIdController = async (id) => {
     }
 };
 
-module.exports = getPokemonByIdController;
+module.exports = {getPokemonByIdController};
