@@ -7,7 +7,7 @@ export const MainContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  height: 120vh;
   color: ${(props) => props.theme.colors.text};
   /* background-color: ${(props) => props.theme.colors.background}; */
   background: url(${(props) => "../" + props.theme.tileBackground}) repeat;

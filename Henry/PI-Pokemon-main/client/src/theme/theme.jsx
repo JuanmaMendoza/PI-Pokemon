@@ -15,7 +15,7 @@ export const theme = {
       colors: {
         background: "rgb(245, 235, 228)",
         text: "rgb(51, 51, 51)",
-        grayed: "rgba(150, 137, 137, 0.4)",
+        grayed: "rgba(150, 137, 137, 0.9)",
         primary: "rgb(247, 222, 213)",
         secondary: "rgb(246, 205, 197)",
         tertiary: "rgb(240, 165, 165)",
@@ -29,10 +29,10 @@ export const theme = {
       colors: {
         background: "rgb(24, 18, 28)",
         text: "rgb(255, 255, 255)",
-        grayed: "rgba(128, 128, 136, 0.3)",
-        primary: "rgb(40, 30, 53)",
-        secondary: "rgb(53, 41, 80)",
-        tertiary: "rgb(71, 49, 125)",
+        grayed: "rgba(128, 128, 136, 0.9)",
+        primary: "rgb(173, 216, 230)",
+        secondary: "rgb(173, 216, 230)",
+        tertiary: "rgb(	77, 77, 100)",
         accent: "rgb(160, 133, 255)",
       },
       splashScreen: "splash-dark.webp",

@@ -15,7 +15,7 @@ const Cards = ({ allPokemons, pokemons, currentPage }) => {
         currentPage * 12
     );
 
-    return (
+    return ( 
         <MainContainer>
             <Wrapper>
                 {allPokemons.length ? (
@@ -33,13 +33,13 @@ const Cards = ({ allPokemons, pokemons, currentPage }) => {
                         })
                     ) : (
                         <h2>
-                            sorry, we couldn't find any pokémons matching your search
+                            Sorry, we couldn't find any pokémons matching your search
                         </h2>
                     )
                 ) : (
                     <LoadingWrapper>
                         <LoadingGIF src="loading.gif" alt="loading" />
-                        <LoadingText>loading, please be patient...</LoadingText>
+                        <LoadingText>Loading, please be patient...</LoadingText>
                     </LoadingWrapper>
                 )}
             </Wrapper>

@@ -3,7 +3,7 @@ import { TitleA } from "../../css/DesignPatterns/TitleA";
 import { WidgetA } from "../../css/DesignPatterns/WidgetA";
 
 export const DetailContainer = styled.div`
-  height: 100vh;
+  height: 120vh;
   color: ${(props) => props.theme.colors.text};
   background: url(${(props) => "../" + props.theme.tileBackground}) repeat;
 `;
@@ -16,7 +16,7 @@ export const PokemonContainer = styled.div`
   aspect-ratio: 1/1.41421356237;
   top: 3rem;
   left: 50%;
-  height: calc(100vh - 10rem);
+  height: calc(100vh - 1rem);
   transform: translateX(-50%);
   gap: 1.5rem;
   justify-content: space-between;

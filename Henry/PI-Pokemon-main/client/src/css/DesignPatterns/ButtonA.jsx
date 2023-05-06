@@ -7,7 +7,7 @@ export const ButtonA = css`
   align-items: center;
   height: 4em;
   width: 4em;
-  border-radius: 3em;
+  border-radius:4em;
   background-color: ${(props) => props.theme.colors.primary};
   box-shadow: 1px 2px 3px -1px ${(props) => props.theme.colors.accent},
     0px 0px 8px -5px ${(props) => props.theme.colors.text};

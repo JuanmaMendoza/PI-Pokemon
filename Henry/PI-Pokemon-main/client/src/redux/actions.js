@@ -58,11 +58,12 @@ export const fetchPokemons = () => {
 export const createPokemon = (pokemon) => {
     return async (dispatch) => {
         try {
-            const createdPokemon = (await axios({ method: 'post' , url: `${URL}/pokemon` , data: pokemon})).data;
-            return dispatch({ type: CREATE_POKEMON , payload: createdPokemon})            
+          const createdPokemon = (
+            await axios({ method: "post", url: `${URL}/pokemon`, data: pokemon })
+          ).data;
+          return dispatch({ type: CREATE_POKEMON, payload: createdPokemon });
+        } catch (error) {
+          console.log(error.message);
         }
-        catch(error) {
-            console.log(error.message);
-        }
-    }
+      };
 }

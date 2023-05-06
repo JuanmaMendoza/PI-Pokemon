@@ -16,7 +16,7 @@ const initialState = {
     pokemons: [],
     currentPage: 1,
     totalPages: 0,
-    refresh: false,
+    refresh: false, 
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -25,10 +25,11 @@ const reducer = (state = initialState, { type, payload }) => {
             let orderedPokemons = [];
             //ordeno por nombres
             if (payload.name === 'asc') {
-                orderedPokemons = state.pokemons.sort((a, b) => a.name.localCompare(b.name));
+                orderedPokemons = state.pokemons.sort((a, b) => a.name.localeCompare(b.name));
+
             };
             if (payload.name === 'desc') {
-                orderedPokemons = state.pokemons.sort((a, b) => b.name.localCompare(a.name));
+                orderedPokemons = state.pokemons.sort((a, b) => b.name.localeCompare(a.name));
             };
             //ordeno por ataques
             if (payload.attack === 'asc') {
@@ -40,35 +41,37 @@ const reducer = (state = initialState, { type, payload }) => {
             return { ...state, orderedPokemons: orderedPokemons }
 
         case FILTER_POKEMONS:
-
-            let combinedPokemons = [];
-            const dbPokemons = state.orderedPokemons.filter((pokemon) => 
-                !Number(pokemon.id)
-            );
-            const apiPokemons = state.orderedPokemons.filter((pokemon) => 
-                Number(pokemon.id)
-            );
-            //busco por source
-            if (payload.bySource.db) {
-                combinedPokemons = [...combinedPokemons, dbPokemons];
-            }
-            if (payload.bySource.api) {
-                combinedPokemons = [...combinedPokemons, apiPokemons];
-            }
-            //busco por type
-            let filteredPokemonsByType = combinedPokemons.filter((pokemon) => {
-                return payload.byType.every((chekeado) => {
-                    return pokemon.types.some((type) => {
-                        return type === chekeado;
-                    });
-                });
+        //filtro por source    
+        let combinedPokemons = [];
+        const dbPokemons = state.orderedPokemons.filter(
+          (pokemon) => !Number(pokemon.id)
+        );
+        const apiPokemons = state.orderedPokemons.filter((pokemon) =>
+          Number(pokemon.id)
+        );
+        if (payload.bySource.db)
+          combinedPokemons = [...combinedPokemons, ...dbPokemons];
+        if (payload.bySource.api)
+          combinedPokemons = [...combinedPokemons, ...apiPokemons];
+  
+        // filtro por tipo
+        let filteredPokemonsByType = combinedPokemons.filter((pokemon) => {
+          return payload.byType.every((checkedType) => {
+            return pokemon.types.some((type) => {
+              return type === checkedType;
             });
-            if (!payload.byType.lenght) {
-                filteredPokemonsByType = combinedPokemons;
-            }
-
-            return { ...state, pokemons: [...filteredPokemonsByType], currentPage: 1, totalPages: Math.ceil(filteredPokemonsByType.length / 12) };
-
+          });
+        });
+        if (!payload.byType.length) {
+          filteredPokemonsByType = combinedPokemons;
+        }
+  
+        return {
+          ...state,
+          pokemons: [...filteredPokemonsByType],
+          currentPage: 1,
+          totalPages: Math.ceil(filteredPokemonsByType.length / 12),
+        };
         case FETCH_TYPES:
             return {
                 ...state,
@@ -88,8 +91,8 @@ const reducer = (state = initialState, { type, payload }) => {
         case CREATE_POKEMON:
             return {
                 ...state,
-                refresh: true
-            }
+                refresh: true,
+              };
 
         case SET_CURRENT_PAGE:
             return {
